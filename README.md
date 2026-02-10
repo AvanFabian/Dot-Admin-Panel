@@ -29,9 +29,9 @@ A fullstack admin panel for managing HR data (Departments and Employees) built w
 
 ### Entity Relationship Diagram
 
-[Open Entity Relationship Diagram](docs/project-diagrams.drawio)
+![Entity Relationship Diagram](public/assets/DOT%20Admin%20Panel%20Diagram-Entity%20Relationship%20Diagram.drawio.png)
 
-*Note: Open this file with the Draw.io Integration extension in VS Code.*
+[Open Entity Relationship Diagram (Google Drive)](https://drive.google.com/file/d/15gVDakK-D9wB3EV7FSpdYc_zyScSfaYD/view?usp=sharing)
 
 ### Tables
 
@@ -58,9 +58,9 @@ A fullstack admin panel for managing HR data (Departments and Employees) built w
 
 ### Architecture Diagram
 
-[Open Architecture Diagram](docs/project-diagrams.drawio)
+![Architecture Diagram](public/assets/DOT%20Admin%20Panel%20Diagram-Architecture%20Diagram.drawio.png)
 
-*Note: Open this file with the Draw.io Integration extension in VS Code.*
+[Open Architecture Diagram (Google Drive)](https://drive.google.com/file/d/15gVDakK-D9wB3EV7FSpdYc_zyScSfaYD/view?usp=sharing)
 
 ---
 
