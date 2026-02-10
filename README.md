@@ -19,28 +19,9 @@ A fullstack admin panel for managing HR data (Departments and Employees) built w
 
 ### Entity Relationship Diagram
 
-```
-┌──────────────────────┐       ┌──────────────────────────┐
-│     departments      │       │       employees           │
-├──────────────────────┤       ├──────────────────────────┤
-│ id (PK)         INT  │───┐   │ id (PK)           INT    │
-│ name        VARCHAR  │   │   │ name          VARCHAR    │
-│ description    TEXT  │   │   │ email         VARCHAR    │
-│ created_at TIMESTAMP │   │   │ phone         VARCHAR    │
-│ updated_at TIMESTAMP │   └──>│ department_id (FK) INT   │
-└──────────────────────┘       │ position      VARCHAR    │
-                               │ hire_date        DATE    │
-┌──────────────────────┐       │ salary        DECIMAL    │
-│       users          │       │ created_at   TIMESTAMP   │
-├──────────────────────┤       │ updated_at   TIMESTAMP   │
-│ id (PK)         INT  │       └──────────────────────────┘
-│ username    VARCHAR  │
-│ password    VARCHAR  │       Relationship:
-│ name        VARCHAR  │       Department 1 ──── ∞ Employee
-│ created_at TIMESTAMP │       (One-to-Many)
-│ updated_at TIMESTAMP │
-└──────────────────────┘
-```
+[Open Entity Relationship Diagram](docs/project-diagrams.drawio)
+
+*Note: Open this file with the Draw.io Integration extension in VS Code.*
 
 ### Tables
 
@@ -67,22 +48,9 @@ A fullstack admin panel for managing HR data (Departments and Employees) built w
 
 ### Architecture Diagram
 
-```
-Client Request
-     │
-     ▼
-┌─────────────┐    ┌──────────────┐    ┌─────────────┐
-│  Controller  │───>│   Service    │───>│   Entity    │
-│  (Routes)    │    │  (Business)  │    │   (Model)   │
-│              │<───│              │<───│             │
-└──────┬──────┘    └──────────────┘    └─────────────┘
-       │                                      │
-       ▼                                      ▼
-┌─────────────┐                      ┌─────────────┐
-│    View      │                      │  PostgreSQL  │
-│  (Handlebars)│                      │  Database    │
-└─────────────┘                      └─────────────┘
-```
+[Open Architecture Diagram](docs/project-diagrams.drawio)
+
+*Note: Open this file with the Draw.io Integration extension in VS Code.*
 
 ---
 
