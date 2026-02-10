@@ -15,6 +15,16 @@ A fullstack admin panel for managing HR data (Departments and Employees) built w
 
 ---
 
+## 📸 Screenshots
+
+| Page | Screenshot |
+|------|------------|
+| **Login / Landing Page** | ![Login Page](public/assets/landingpage.png) |
+| **Department List** | ![Department List](public/assets/departments.png) |
+| **Department CRUD** | ![Department Form](public/assets/departments-crud.png) |
+| **Employee List** | ![Employee List](public/assets/employees.png) |
+| **Employee CRUD** | ![Employee Form](public/assets/employees-crud.png) |
+
 ## 🗄️ Database Design
 
 ### Entity Relationship Diagram
