@@ -7,6 +7,7 @@ import { EmployeeModule } from './employee/employee.module';
 import { Department } from './department/entities/department.entity';
 import { Employee } from './employee/entities/employee.entity';
 import { User } from './auth/entities/user.entity';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { User } from './auth/entities/user.entity';
     AuthModule,
     DepartmentModule,
     EmployeeModule,
+    SeedModule,
   ],
   controllers: [AppController],
   providers: [],
