@@ -21,7 +21,7 @@ export class EmployeeService {
         const queryBuilder = this.employeeRepository
             .createQueryBuilder('employee')
             .leftJoinAndSelect('employee.department', 'department')
-            .orderBy('employee.created_at', 'DESC')
+            .orderBy('employee.created_at', 'ASC')
             .skip(skip)
             .take(limit);
 

@@ -35,7 +35,7 @@ export class DepartmentService {
         const [data, total] = await this.departmentRepository.findAndCount({
             where: whereCondition,
             relations: ['employees'],
-            order: { created_at: 'DESC' },
+            order: { created_at: 'ASC' },
             skip,
             take: limit,
         });
