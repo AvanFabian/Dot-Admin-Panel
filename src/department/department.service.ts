@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, Like } from 'typeorm';
+import { Repository, ILike } from 'typeorm';
 import { Department } from './entities/department.entity';
 
 export interface PaginatedResult<T> {
@@ -27,8 +27,8 @@ export class DepartmentService {
 
         const whereCondition = search
             ? [
-                { name: Like(`%${search}%`) },
-                { description: Like(`%${search}%`) },
+                { name: ILike(`%${search}%`) },
+                { description: ILike(`%${search}%`) },
             ]
             : {};
 

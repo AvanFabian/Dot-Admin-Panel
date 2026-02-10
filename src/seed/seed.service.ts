@@ -14,8 +14,15 @@ export class SeedService implements OnModuleInit {
     ) { }
 
     async onModuleInit() {
+        await this.truncateTables();
         await this.seedDepartments();
         await this.seedEmployees();
+    }
+
+    private async truncateTables() {
+        // Disable foreign key checks to allow truncation
+        await this.departmentRepository.query('TRUNCATE TABLE employees, departments RESTART IDENTITY CASCADE;');
+        console.log('Tables truncated and IDs reset.');
     }
 
     private async seedDepartments() {

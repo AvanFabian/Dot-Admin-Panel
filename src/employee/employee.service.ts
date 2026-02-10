@@ -27,7 +27,7 @@ export class EmployeeService {
 
         if (search) {
             queryBuilder.where(
-                'employee.name ILIKE :search OR employee.email ILIKE :search OR employee.position ILIKE :search OR department.name ILIKE :search',
+                '(employee.name ILIKE :search OR employee.email ILIKE :search OR employee.position ILIKE :search OR department.name ILIKE :search)',
                 { search: `%${search}%` },
             );
         }
