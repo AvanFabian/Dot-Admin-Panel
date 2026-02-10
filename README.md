@@ -233,6 +233,21 @@ public/                              # Static assets
 
 ---
 
+## 🧪 API Testing (Postman)
+
+A Postman collection is provided in `docs/postman_collection.json` to help you test the endpoints.
+
+### Setup Instructions:
+
+1.  **Import**: Import `docs/postman_collection.json` into Postman.
+2.  **Auth First**: You **must** run the **Auth > Login** request first. Postman will automatically save the session cookie.
+3.  **Method Override**: Since this is an MVC app using HTML forms, `PUT` and `DELETE` requests are sent as `POST` with a hidden field `_method`. The Postman collection is already configured this way:
+    - Use `POST` method.
+    - Set `_method` to `PUT` or `DELETE` in the `x-www-form-urlencoded` body.
+4.  **Headers**: If you want JSON responses for errors, add the header: `Accept: application/json`. Otherwise, you will receive the HTML for the rendered pages.
+
+---
+
 ## ⚠️ Error Handling
 
 The application implements comprehensive error handling:

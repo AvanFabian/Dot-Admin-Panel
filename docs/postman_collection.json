@@ -1,0 +1,434 @@
+{
+    "info": {
+        "_postman_id": "8340997c-abc7-4e68-8caa-1e21a0915682",
+        "name": "HR Admin Panel - technical Test DOT Indonesia",
+        "description": "Collection for testing HR Admin Panel endpoints. Note: This app uses session-based authentication.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Auth",
+            "item": [
+                {
+                    "name": "Login",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "username",
+                                    "value": "admin",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "password",
+                                    "value": "admin123",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/auth/login",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "auth",
+                                "login"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Logout",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/auth/logout",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "auth",
+                                "logout"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Departments",
+            "item": [
+                {
+                    "name": "List Departments",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/departments?search=&page=1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "departments"
+                            ],
+                            "query": [
+                                {
+                                    "key": "search",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Department",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "name",
+                                    "value": "IT Support",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "description",
+                                    "value": "Technical support team",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/departments",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "departments"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Department Detail",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/departments/1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "departments",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Department",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "_method",
+                                    "value": "PUT",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "name",
+                                    "value": "IT Support Updated",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "description",
+                                    "value": "Updated description",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/departments/1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "departments",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Department",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "_method",
+                                    "value": "DELETE",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/departments/1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "departments",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Employees",
+            "item": [
+                {
+                    "name": "List Employees",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/employees?search=&page=1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "employees"
+                            ],
+                            "query": [
+                                {
+                                    "key": "search",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Employee",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "name",
+                                    "value": "Alice Smith",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "email",
+                                    "value": "alice@company.com",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "phone",
+                                    "value": "0812345678",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "position",
+                                    "value": "Frontend Dev",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "hire_date",
+                                    "value": "2024-02-10",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "salary",
+                                    "value": "12000000",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "department_id",
+                                    "value": "1",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/employees",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "employees"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Employee Detail",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/employees/1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "employees",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Employee",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "_method",
+                                    "value": "PUT",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "name",
+                                    "value": "Alice Smith Updated",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "email",
+                                    "value": "alice.upd@company.com",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "position",
+                                    "value": "Senior Frontend Dev",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "hire_date",
+                                    "value": "2024-02-10",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "salary",
+                                    "value": "15000000",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "department_id",
+                                    "value": "1",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/employees/1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "employees",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Employee",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "_method",
+                                    "value": "DELETE",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/employees/1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "employees",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:3000",
+            "type": "string"
+        }
+    ]
+}
