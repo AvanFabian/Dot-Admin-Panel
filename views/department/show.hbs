@@ -1,0 +1,96 @@
+<div class="page-header">
+  <div class="page-header-left">
+    <h1>
+      <span class="material-icons-outlined">business</span>
+      {{department.name}}
+    </h1>
+    <p class="page-subtitle">Department Detail</p>
+  </div>
+  <div class="page-header-right">
+    <a href="/departments" class="btn btn-outline">
+      <span class="material-icons-outlined">arrow_back</span>
+      Back
+    </a>
+    <a href="/departments/{{department.id}}/edit" class="btn btn-warning">
+      <span class="material-icons-outlined">edit</span>
+      Edit
+    </a>
+  </div>
+</div>
+
+<div class="detail-grid">
+  <div class="card">
+    <div class="card-header">
+      <h2>Department Information</h2>
+    </div>
+    <div class="card-body">
+      <div class="detail-row">
+        <span class="detail-label">ID</span>
+        <span class="detail-value">{{department.id}}</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Name</span>
+        <span class="detail-value">{{department.name}}</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Description</span>
+        <span class="detail-value">{{#if department.description}}{{department.description}}{{else}}<em class="text-muted">No description</em>{{/if}}</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Total Employees</span>
+        <span class="detail-value">
+          <span class="badge badge-info">{{department.employees.length}}</span>
+        </span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Created At</span>
+        <span class="detail-value">{{formatDate department.created_at}}</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Updated At</span>
+        <span class="detail-value">{{formatDate department.updated_at}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Employees in this Department</h2>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Email</th>
+            <th width="80">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each department.employees}}
+          <tr>
+            <td><a href="/employees/{{this.id}}" class="link-primary">{{this.name}}</a></td>
+            <td>{{this.position}}</td>
+            <td class="text-muted">{{this.email}}</td>
+            <td>
+              <a href="/employees/{{this.id}}" class="btn btn-sm btn-info" title="View">
+                <span class="material-icons-outlined">visibility</span>
+              </a>
+            </td>
+          </tr>
+          {{else}}
+          <tr>
+            <td colspan="4" class="text-center text-muted">
+              <div class="empty-state-sm">
+                <span class="material-icons-outlined">person_off</span>
+                <p>No employees in this department</p>
+              </div>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

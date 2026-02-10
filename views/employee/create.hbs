@@ -1,0 +1,81 @@
+<div class="page-header">
+  <div class="page-header-left">
+    <h1>
+      <span class="material-icons-outlined">person_add</span>
+      Create Employee
+    </h1>
+    <p class="page-subtitle">Add a new employee to your organization</p>
+  </div>
+  <div class="page-header-right">
+    <a href="/employees" class="btn btn-outline">
+      <span class="material-icons-outlined">arrow_back</span>
+      Back
+    </a>
+  </div>
+</div>
+
+{{#if error}}
+<div class="alert alert-error">
+  <span class="material-icons-outlined">error_outline</span>
+  <span>{{error}}</span>
+</div>
+{{/if}}
+
+<div class="card">
+  <div class="card-header">
+    <h2>Employee Information</h2>
+  </div>
+  <div class="card-body">
+    <form action="/employees" method="POST" class="form">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="name">Full Name <span class="required">*</span></label>
+          <input type="text" id="name" name="name" placeholder="e.g. John Doe" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email <span class="required">*</span></label>
+          <input type="email" id="email" name="email" placeholder="e.g. john@company.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="text" id="phone" name="phone" placeholder="e.g. +62 812 3456 7890">
+        </div>
+
+        <div class="form-group">
+          <label for="position">Position <span class="required">*</span></label>
+          <input type="text" id="position" name="position" placeholder="e.g. Software Engineer" required>
+        </div>
+
+        <div class="form-group">
+          <label for="department_id">Department <span class="required">*</span></label>
+          <select id="department_id" name="department_id" required>
+            <option value="">Select Department</option>
+            {{#each departments}}
+            <option value="{{this.id}}">{{this.name}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="hire_date">Hire Date <span class="required">*</span></label>
+          <input type="date" id="hire_date" name="hire_date" required>
+        </div>
+
+        <div class="form-group">
+          <label for="salary">Salary (Rp) <span class="required">*</span></label>
+          <input type="number" id="salary" name="salary" placeholder="e.g. 10000000" min="0" step="1000" required>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+          <span class="material-icons-outlined">save</span>
+          Create Employee
+        </button>
+        <a href="/employees" class="btn btn-outline">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

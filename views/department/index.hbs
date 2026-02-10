@@ -1,0 +1,103 @@
+<div class="page-header">
+  <div class="page-header-left">
+    <h1>
+      <span class="material-icons-outlined">business</span>
+      Departments
+    </h1>
+    <p class="page-subtitle">Manage your organization's departments</p>
+  </div>
+  <div class="page-header-right">
+    <a href="/departments/create" class="btn btn-primary">
+      <span class="material-icons-outlined">add</span>
+      New Department
+    </a>
+  </div>
+</div>
+
+{{#if success}}
+<div class="alert alert-success">
+  <span class="material-icons-outlined">check_circle</span>
+  <span>{{success}}</span>
+</div>
+{{/if}}
+
+{{#if error}}
+<div class="alert alert-error">
+  <span class="material-icons-outlined">error_outline</span>
+  <span>{{error}}</span>
+</div>
+{{/if}}
+
+<div class="card">
+  <div class="card-header">
+    <form action="/departments" method="GET" class="search-form">
+      <div class="search-input-wrapper">
+        <span class="material-icons-outlined">search</span>
+        <input type="text" name="search" placeholder="Search departments..." value="{{search}}">
+      </div>
+      <button type="submit" class="btn btn-secondary">Search</button>
+      {{#if search}}
+      <a href="/departments" class="btn btn-outline">Clear</a>
+      {{/if}}
+    </form>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th width="60">#</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th width="120">Employees</th>
+          <th width="180">Created</th>
+          <th width="160">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each departments}}
+        <tr>
+          <td class="text-muted">{{this.id}}</td>
+          <td>
+            <a href="/departments/{{this.id}}" class="link-primary">
+              <strong>{{this.name}}</strong>
+            </a>
+          </td>
+          <td class="text-muted">{{this.description}}</td>
+          <td>
+            <span class="badge badge-info">{{this.employees.length}}</span>
+          </td>
+          <td class="text-muted">{{formatDate this.created_at}}</td>
+          <td>
+            <div class="action-buttons">
+              <a href="/departments/{{this.id}}" class="btn btn-sm btn-info" title="View">
+                <span class="material-icons-outlined">visibility</span>
+              </a>
+              <a href="/departments/{{this.id}}/edit" class="btn btn-sm btn-warning" title="Edit">
+                <span class="material-icons-outlined">edit</span>
+              </a>
+              <form action="/departments/{{this.id}}?_method=DELETE" method="POST" class="inline-form"
+                    onsubmit="return confirm('Are you sure you want to delete this department?')">
+                <button type="submit" class="btn btn-sm btn-danger" title="Delete">
+                  <span class="material-icons-outlined">delete</span>
+                </button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        {{else}}
+        <tr>
+          <td colspan="6" class="text-center text-muted">
+            <div class="empty-state">
+              <span class="material-icons-outlined">inbox</span>
+              <p>No departments found</p>
+            </div>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  {{> pagination}}
+</div>

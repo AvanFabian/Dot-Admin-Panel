@@ -1,0 +1,111 @@
+<div class="page-header">
+  <div class="page-header-left">
+    <h1>
+      <span class="material-icons-outlined">people</span>
+      Employees
+    </h1>
+    <p class="page-subtitle">Manage your organization's employees</p>
+  </div>
+  <div class="page-header-right">
+    <a href="/employees/create" class="btn btn-primary">
+      <span class="material-icons-outlined">person_add</span>
+      New Employee
+    </a>
+  </div>
+</div>
+
+{{#if success}}
+<div class="alert alert-success">
+  <span class="material-icons-outlined">check_circle</span>
+  <span>{{success}}</span>
+</div>
+{{/if}}
+
+{{#if error}}
+<div class="alert alert-error">
+  <span class="material-icons-outlined">error_outline</span>
+  <span>{{error}}</span>
+</div>
+{{/if}}
+
+<div class="card">
+  <div class="card-header">
+    <form action="/employees" method="GET" class="search-form">
+      <div class="search-input-wrapper">
+        <span class="material-icons-outlined">search</span>
+        <input type="text" name="search" placeholder="Search by name, email, position, or department..." value="{{search}}">
+      </div>
+      <button type="submit" class="btn btn-secondary">Search</button>
+      {{#if search}}
+      <a href="/employees" class="btn btn-outline">Clear</a>
+      {{/if}}
+    </form>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th width="60">#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Position</th>
+          <th>Department</th>
+          <th>Hire Date</th>
+          <th width="160">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each employees}}
+        <tr>
+          <td class="text-muted">{{this.id}}</td>
+          <td>
+            <a href="/employees/{{this.id}}" class="link-primary">
+              <strong>{{this.name}}</strong>
+            </a>
+          </td>
+          <td class="text-muted">{{this.email}}</td>
+          <td>{{this.position}}</td>
+          <td>
+            {{#if this.department}}
+            <a href="/departments/{{this.department.id}}" class="badge badge-primary">
+              {{this.department.name}}
+            </a>
+            {{else}}
+            <span class="badge badge-muted">Unassigned</span>
+            {{/if}}
+          </td>
+          <td class="text-muted">{{formatDate this.hire_date}}</td>
+          <td>
+            <div class="action-buttons">
+              <a href="/employees/{{this.id}}" class="btn btn-sm btn-info" title="View">
+                <span class="material-icons-outlined">visibility</span>
+              </a>
+              <a href="/employees/{{this.id}}/edit" class="btn btn-sm btn-warning" title="Edit">
+                <span class="material-icons-outlined">edit</span>
+              </a>
+              <form action="/employees/{{this.id}}?_method=DELETE" method="POST" class="inline-form"
+                    onsubmit="return confirm('Are you sure you want to delete this employee?')">
+                <button type="submit" class="btn btn-sm btn-danger" title="Delete">
+                  <span class="material-icons-outlined">delete</span>
+                </button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        {{else}}
+        <tr>
+          <td colspan="7" class="text-center text-muted">
+            <div class="empty-state">
+              <span class="material-icons-outlined">person_off</span>
+              <p>No employees found</p>
+            </div>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  {{> pagination}}
+</div>

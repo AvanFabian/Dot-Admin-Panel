@@ -1,0 +1,38 @@
+{{#if pagination}}
+{{#if (gt pagination.totalPages 1)}}
+<div class="pagination">
+  <div class="pagination-info">
+    Showing page <strong>{{pagination.page}}</strong> of <strong>{{pagination.totalPages}}</strong>
+    ({{pagination.total}} total records)
+  </div>
+  <div class="pagination-controls">
+    {{#if (gt pagination.page 1)}}
+    <a href="?page={{subtract pagination.page 1}}{{#if search}}&search={{search}}{{/if}}" class="pagination-btn">
+      <span class="material-icons-outlined">chevron_left</span>
+    </a>
+    {{else}}
+    <span class="pagination-btn disabled">
+      <span class="material-icons-outlined">chevron_left</span>
+    </span>
+    {{/if}}
+
+    {{#range 1 pagination.totalPages}}
+    <a href="?page={{this}}{{#if ../search}}&search={{../search}}{{/if}}"
+       class="pagination-btn {{#if (eq this ../pagination.page)}}active{{/if}}">
+      {{this}}
+    </a>
+    {{/range}}
+
+    {{#if (lt pagination.page pagination.totalPages)}}
+    <a href="?page={{add pagination.page 1}}{{#if search}}&search={{search}}{{/if}}" class="pagination-btn">
+      <span class="material-icons-outlined">chevron_right</span>
+    </a>
+    {{else}}
+    <span class="pagination-btn disabled">
+      <span class="material-icons-outlined">chevron_right</span>
+    </span>
+    {{/if}}
+  </div>
+</div>
+{{/if}}
+{{/if}}
