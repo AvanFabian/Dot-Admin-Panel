@@ -107,6 +107,6 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
 
   await app.listen(process.env.PORT ?? 3001);
-  console.log(`Application is running on: http://localhost:${process.env.PORT ?? 3001}`);
+  console.log(`Application is running on: http://127.0.0.1:${process.env.PORT ?? 3001}`);
 }
 bootstrap();

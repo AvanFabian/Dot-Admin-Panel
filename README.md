@@ -120,7 +120,7 @@ A fullstack admin panel for managing HR data (Departments and Employees) built w
    ```typescript
    TypeOrmModule.forRoot({
      type: 'postgres',
-     host: 'localhost',
+     host: '127.0.0.1',
      port: 5432,
      username: 'postgres',
      password: 'your_password',
@@ -140,7 +140,7 @@ A fullstack admin panel for managing HR data (Departments and Employees) built w
 
 6. **Access the application**
    
-   Open `http://localhost:3000` in your browser.
+   Open `http://127.0.0.1:3000` in your browser.
 
 ### Default Admin Credentials
 - **Username**: `admin`

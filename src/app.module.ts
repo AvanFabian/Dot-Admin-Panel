@@ -13,7 +13,7 @@ import { SeedModule } from './seed/seed.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: '127.0.0.1',
       port: 5432,
       username: 'postgres',
       password: 'bian2004',
