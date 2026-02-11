@@ -1,8 +1,8 @@
 {
     "info": {
         "_postman_id": "8340997c-abc7-4e68-8caa-1e21a0915682",
-        "name": "HR Admin Panel - technical Test DOT Indonesia",
-        "description": "Collection for testing HR Admin Panel endpoints. Note: This app uses session-based authentication.",
+        "name": "HR Admin Panel - Technical Test DOT Indonesia",
+        "description": "Collection for testing HR Admin Panel endpoints with JSON responses.",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
     "item": [
@@ -13,7 +13,13 @@
                     "name": "Login",
                     "request": {
                         "method": "POST",
-                        "header": [],
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
                         "body": {
                             "mode": "urlencoded",
                             "urlencoded": [
@@ -46,7 +52,13 @@
                     "name": "Logout",
                     "request": {
                         "method": "GET",
-                        "header": [],
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
                         "url": {
                             "raw": "{{base_url}}/auth/logout",
                             "host": [
@@ -69,7 +81,13 @@
                     "name": "List Departments",
                     "request": {
                         "method": "GET",
-                        "header": [],
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
                         "url": {
                             "raw": "{{base_url}}/departments?search=&page=1",
                             "host": [
@@ -96,7 +114,13 @@
                     "name": "Create Department",
                     "request": {
                         "method": "POST",
-                        "header": [],
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
                         "body": {
                             "mode": "urlencoded",
                             "urlencoded": [
@@ -128,7 +152,13 @@
                     "name": "Get Department Detail",
                     "request": {
                         "method": "GET",
-                        "header": [],
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
                         "url": {
                             "raw": "{{base_url}}/departments/1",
                             "host": [
@@ -146,7 +176,13 @@
                     "name": "Update Department",
                     "request": {
                         "method": "POST",
-                        "header": [],
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
                         "body": {
                             "mode": "urlencoded",
                             "urlencoded": [
@@ -184,7 +220,13 @@
                     "name": "Delete Department",
                     "request": {
                         "method": "POST",
-                        "header": [],
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
                         "body": {
                             "mode": "urlencoded",
                             "urlencoded": [
@@ -217,7 +259,13 @@
                     "name": "List Employees",
                     "request": {
                         "method": "GET",
-                        "header": [],
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
                         "url": {
                             "raw": "{{base_url}}/employees?search=&page=1",
                             "host": [
@@ -244,7 +292,13 @@
                     "name": "Create Employee",
                     "request": {
                         "method": "POST",
-                        "header": [],
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
                         "body": {
                             "mode": "urlencoded",
                             "urlencoded": [
@@ -301,7 +355,13 @@
                     "name": "Get Employee Detail",
                     "request": {
                         "method": "GET",
-                        "header": [],
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
                         "url": {
                             "raw": "{{base_url}}/employees/1",
                             "host": [
@@ -319,7 +379,13 @@
                     "name": "Update Employee",
                     "request": {
                         "method": "POST",
-                        "header": [],
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
                         "body": {
                             "mode": "urlencoded",
                             "urlencoded": [
@@ -377,7 +443,13 @@
                     "name": "Delete Employee",
                     "request": {
                         "method": "POST",
-                        "header": [],
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
                         "body": {
                             "mode": "urlencoded",
                             "urlencoded": [
@@ -404,30 +476,10 @@
             ]
         }
     ],
-    "event": [
-        {
-            "listen": "prerequest",
-            "script": {
-                "type": "text/javascript",
-                "exec": [
-                    ""
-                ]
-            }
-        },
-        {
-            "listen": "test",
-            "script": {
-                "type": "text/javascript",
-                "exec": [
-                    ""
-                ]
-            }
-        }
-    ],
     "variable": [
         {
             "key": "base_url",
-            "value": "http://127.0.0.1:3000",
+            "value": "http://127.0.0.1:3001",
             "type": "string"
         }
     ]

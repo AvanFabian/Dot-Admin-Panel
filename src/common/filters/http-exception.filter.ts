@@ -24,8 +24,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
                 typeof exceptionResponse === 'string'
                     ? exceptionResponse
                     : (exceptionResponse as any).message || exception.message;
-        } else if (exception instanceof Error) {
-            message = exception.message;
         }
 
         // Log the error
@@ -34,14 +32,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
             console.error(exception);
         }
 
-        // If it's an API request, return JSON
-        const isApiRequest =
-            request.headers.accept?.includes('application/json') ||
-            request.headers['content-type']?.includes('application/json') ||
-            request.headers['x-requested-with'] === 'XMLHttpRequest' ||
-            request.headers['user-agent']?.includes('PostmanRuntime');
-
-        if (isApiRequest) {
+        // If it's an API request (Accept: application/json), return JSON
+        if (request.headers.accept?.includes('application/json')) {
             return response.status(status).json({
                 statusCode: status,
                 message: message,
