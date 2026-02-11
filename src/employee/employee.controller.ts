@@ -44,6 +44,10 @@ export class EmployeeController {
             delete session.flash.error;
         }
 
+        if (req.headers.accept?.includes('application/json')) {
+            return res.json(result);
+        }
+
         return res.render('employee/index', {
             layout: 'layouts/main',
             title: 'Employees - Admin Panel',
@@ -106,11 +110,14 @@ export class EmployeeController {
             if (!body.department_id) errors.push('Department is required');
 
             if (errors.length > 0) {
+                if (req.headers.accept?.includes('application/json')) {
+                    return res.status(400).json({ error: errors.join(', ') });
+                }
                 session.flash = { error: errors.join(', ') };
                 return res.redirect('/employees/create');
             }
 
-            await this.employeeService.create({
+            const employee = await this.employeeService.create({
                 name: body.name.trim(),
                 email: body.email.trim(),
                 phone: body.phone?.trim() || null,
@@ -120,9 +127,16 @@ export class EmployeeController {
                 department_id: parseInt(body.department_id),
             });
 
+            if (req.headers.accept?.includes('application/json')) {
+                return res.status(201).json({ message: 'Employee created successfully', employee });
+            }
+
             session.flash = { success: 'Employee created successfully.' };
             return res.redirect('/employees');
         } catch (error) {
+            if (req.headers.accept?.includes('application/json')) {
+                return res.status(400).json({ error: (error as Error).message });
+            }
             session.flash = {
                 error: 'Failed to create employee. ' + (error as Error).message,
             };
@@ -142,6 +156,11 @@ export class EmployeeController {
         }
 
         const session = req.session as any;
+
+        if (req.headers.accept?.includes('application/json')) {
+            return res.json(employee);
+        }
+
         return res.render('employee/show', {
             layout: 'layouts/main',
             title: `${employee.name} - Employee Detail`,
@@ -211,6 +230,9 @@ export class EmployeeController {
             if (!body.department_id) errors.push('Department is required');
 
             if (errors.length > 0) {
+                if (req.headers.accept?.includes('application/json')) {
+                    return res.status(400).json({ error: errors.join(', ') });
+                }
                 session.flash = { error: errors.join(', ') };
                 return res.redirect(`/employees/${id}/edit`);
             }
@@ -225,10 +247,19 @@ export class EmployeeController {
                 department_id: parseInt(body.department_id),
             });
 
+            const updatedEmployee = await this.employeeService.findOne(id);
+
+            if (req.headers.accept?.includes('application/json')) {
+                return res.json({ message: 'Employee updated successfully', employee: updatedEmployee });
+            }
+
             session.flash = { success: 'Employee updated successfully.' };
             return res.redirect('/employees');
         } catch (error) {
             if (error instanceof HttpException) throw error;
+            if (req.headers.accept?.includes('application/json')) {
+                return res.status(400).json({ error: (error as Error).message });
+            }
             session.flash = {
                 error: 'Failed to update employee. ' + (error as Error).message,
             };
@@ -250,10 +281,18 @@ export class EmployeeController {
             }
 
             await this.employeeService.remove(id);
+
+            if (req.headers.accept?.includes('application/json')) {
+                return res.json({ message: 'Employee deleted successfully' });
+            }
+
             session.flash = { success: 'Employee deleted successfully.' };
             return res.redirect('/employees');
         } catch (error) {
             if (error instanceof HttpException) throw error;
+            if (req.headers.accept?.includes('application/json')) {
+                return res.status(400).json({ error: (error as Error).message });
+            }
             session.flash = {
                 error: 'Failed to delete employee. ' + (error as Error).message,
             };

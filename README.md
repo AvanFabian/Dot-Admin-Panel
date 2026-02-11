@@ -244,7 +244,9 @@ A Postman collection is provided in `docs/postman_collection.json` to help you t
 3.  **Method Override**: Since this is an MVC app using HTML forms, `PUT` and `DELETE` requests are sent as `POST` with a hidden field `_method`. The Postman collection is already configured this way:
     - Use `POST` method.
     - Set `_method` to `PUT` or `DELETE` in the `x-www-form-urlencoded` body.
-4.  **Headers**: If you want JSON responses for errors, add the header: `Accept: application/json`. Otherwise, you will receive the HTML for the rendered pages.
+4.  **Headers**: To receive **JSON responses** (instead of HTML), you **MUST** add the header: `Accept: application/json`.
+    -   This applies to ALL requests (Login, List, Create, Update, Delete).
+    -   If omitted, the server will return HTML pages (for browser compatibility).
 
 ---
 

@@ -11,6 +11,9 @@ export class AuthController {
         const session = req.session as any;
         // Already logged in? Redirect to dashboard
         if (session.user) {
+            if (req.headers.accept?.includes('application/json')) {
+                return res.status(200).json({ message: 'Already logged in', user: session.user });
+            }
             return res.redirect('/departments');
         }
         const error = session.flash?.error;
@@ -33,6 +36,9 @@ export class AuthController {
         const { username, password } = body;
 
         if (!username || !password) {
+            if (req.headers.accept?.includes('application/json')) {
+                return res.status(400).json({ error: 'Username and password are required.' });
+            }
             const session = req.session as any;
             session.flash = { error: 'Username and password are required.' };
             return res.redirect('/auth/login');
@@ -41,6 +47,9 @@ export class AuthController {
         const user = await this.authService.validateUser(username, password);
 
         if (!user) {
+            if (req.headers.accept?.includes('application/json')) {
+                return res.status(401).json({ error: 'Invalid username or password.' });
+            }
             const session = req.session as any;
             session.flash = { error: 'Invalid username or password.' };
             return res.redirect('/auth/login');
@@ -53,6 +62,9 @@ export class AuthController {
             name: user.name,
         };
 
+        if (req.headers.accept?.includes('application/json')) {
+            return res.status(200).json({ message: 'Login successful', user: session.user });
+        }
         return res.redirect('/departments');
     }
 
@@ -61,6 +73,12 @@ export class AuthController {
         req.session.destroy((err) => {
             if (err) {
                 console.error('Session destroy error:', err);
+                if (req.headers.accept?.includes('application/json')) {
+                    return res.status(500).json({ error: 'Failed to logout' });
+                }
+            }
+            if (req.headers.accept?.includes('application/json')) {
+                return res.status(200).json({ message: 'Logout successful' });
             }
             res.redirect('/auth/login');
         });

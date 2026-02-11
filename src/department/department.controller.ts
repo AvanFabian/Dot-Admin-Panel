@@ -40,6 +40,10 @@ export class DepartmentController {
             delete session.flash.error;
         }
 
+        if (req.headers.accept?.includes('application/json')) {
+            return res.json(result);
+        }
+
         return res.render('department/index', {
             layout: 'layouts/main',
             title: 'Departments - Admin Panel',
@@ -78,18 +82,28 @@ export class DepartmentController {
         const session = req.session as any;
         try {
             if (!body.name || body.name.trim() === '') {
+                if (req.headers.accept?.includes('application/json')) {
+                    return res.status(400).json({ error: 'Department name is required.' });
+                }
                 session.flash = { error: 'Department name is required.' };
                 return res.redirect('/departments/create');
             }
 
-            await this.departmentService.create({
+            const department = await this.departmentService.create({
                 name: body.name.trim(),
                 description: body.description?.trim() || null,
             });
 
+            if (req.headers.accept?.includes('application/json')) {
+                return res.status(201).json({ message: 'Department created successfully', department });
+            }
+
             session.flash = { success: 'Department created successfully.' };
             return res.redirect('/departments');
         } catch (error) {
+            if (req.headers.accept?.includes('application/json')) {
+                return res.status(400).json({ error: (error as Error).message });
+            }
             session.flash = { error: 'Failed to create department. ' + (error as Error).message };
             return res.redirect('/departments/create');
         }
@@ -107,6 +121,10 @@ export class DepartmentController {
         }
 
         const session = req.session as any;
+        if (req.headers.accept?.includes('application/json')) {
+            return res.json(department);
+        }
+
         return res.render('department/show', {
             layout: 'layouts/main',
             title: `${department.name} - Department Detail`,
@@ -152,6 +170,9 @@ export class DepartmentController {
             }
 
             if (!body.name || body.name.trim() === '') {
+                if (req.headers.accept?.includes('application/json')) {
+                    return res.status(400).json({ error: 'Department name is required.' });
+                }
                 session.flash = { error: 'Department name is required.' };
                 return res.redirect(`/departments/${id}/edit`);
             }
@@ -161,10 +182,19 @@ export class DepartmentController {
                 description: body.description?.trim() || null,
             });
 
+            const updatedDepartment = await this.departmentService.findOne(id);
+
+            if (req.headers.accept?.includes('application/json')) {
+                return res.json({ message: 'Department updated successfully', department: updatedDepartment });
+            }
+
             session.flash = { success: 'Department updated successfully.' };
             return res.redirect('/departments');
         } catch (error) {
             if (error instanceof HttpException) throw error;
+            if (req.headers.accept?.includes('application/json')) {
+                return res.status(400).json({ error: (error as Error).message });
+            }
             session.flash = { error: 'Failed to update department. ' + (error as Error).message };
             return res.redirect(`/departments/${id}/edit`);
         }
@@ -184,10 +214,18 @@ export class DepartmentController {
             }
 
             await this.departmentService.remove(id);
+
+            if (req.headers.accept?.includes('application/json')) {
+                return res.json({ message: 'Department deleted successfully' });
+            }
+
             session.flash = { success: 'Department deleted successfully.' };
             return res.redirect('/departments');
         } catch (error) {
             if (error instanceof HttpException) throw error;
+            if (req.headers.accept?.includes('application/json')) {
+                return res.status(400).json({ error: (error as Error).message });
+            }
             session.flash = { error: 'Failed to delete department. ' + (error as Error).message };
             return res.redirect('/departments');
         }
